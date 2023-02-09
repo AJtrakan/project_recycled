@@ -39,19 +39,29 @@ void loop() {
       SeriaL1.write(AA);
       Sta = 1;
     }
+    if(AA == 'N'){
+      Sta = 0;
+    }
   }
 
   if (SeriaL2.available()) {
     AB = SeriaL2.read();
-    Serial.print("SeriaL2 = ");
-    Serial.println(AB);
     if (AB == 'O') {
       Serial.println("SeriaL2 = OK");
       SeriaL1.write('A');
+      Sta = 0;
     } else if (AB == 'E') {
       Serial.println("SeriaL2 = Error");
       SeriaL1.write('B');
       Sta = 0;
+    } else if (AB == 'N') {
+      Serial.println("SeriaL2 = N");
+      //SeriaL1.write('B');
+      Sta = 0;
+    } else {
+      Serial.println("SeriaL2 = ");
+      Serial.println(AB);
+      SeriaL1.write(AB);
     }
   }
 
