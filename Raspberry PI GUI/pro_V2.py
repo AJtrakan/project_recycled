@@ -153,6 +153,8 @@ def exchange_P():
         print("EP2")
         global count
         count += 100
+        if count > 1000:
+            count = 1000
         print(count)
         Label(root3, text="                       1", fg="red", font=("bold", 60)).place(x=600, y=250)
         Label(root3, text=str(count), fg="red", font=("bold", 60)).place(x=600, y=250)
@@ -185,7 +187,32 @@ def exchange_P():
             print(point_P)
             print(passworD)
             Label(root3, text="แลก point สำเร็จ", fg="red", font=("bold", 36)).place(x=100, y=350)
-            count = 0
+            
+            ser = serial.Serial ("/dev/ttyAMA0", 9600,timeout=0.1)
+            if count == 100:
+                ser.write(b"1")
+                print("exchange = 100 point")
+            if count == 200:
+                ser.write(b"2")
+                print("1")
+            if count == 300:
+                ser.write(b"3")
+            if count == 400:
+                ser.write(b"4")
+            if count == 500:
+                ser.write(b"5")
+            if count == 600:
+                ser.write(b"6")
+            if count == 700:
+                ser.write(b"7")
+            if count == 800:
+                ser.write(b"8")
+            if count == 900:
+                ser.write(b"9")
+            if count == 1000:
+                ser.write(b"0")
+            
+            count = 0      
             root3.after(1000, lambda: root3.destroy())
             ww()
 
@@ -364,15 +391,15 @@ while (status):
 # แต้มขวด
     pygame.draw.rect(dis, GRAY, pygame.Rect(570, 400, 100, 80))
     if size == 'S':
-        Po = 5
+        Po = 2
         img1 = font1.render(str(Po), True, BLUE)
         dis.blit(img1, (580, 410))
     elif size == 'M':
-        Po = 10
+        Po = 4
         img1 = font1.render(str(Po), True, BLUE)
         dis.blit(img1, (580, 410))
     elif size == 'L':
-        Po = 20
+        Po = 6
         img1 = font1.render(str(Po), True, BLUE)
         dis.blit(img1, (580, 410))
     elif size == '':
@@ -414,13 +441,13 @@ while (status):
         if i.type == pygame.MOUSEBUTTONDOWN:
             if 510 <= mouse[0] <= 510 + 185 and 505 <= mouse[1] <= 505 + 80:
                 if size == 'S':
-                    PP += 5
+                    PP += 2
                     
                 elif size == 'M':
-                    PP += 10
+                    PP += 4
             
                 elif size == 'L':
-                    PP += 20
+                    PP += 6
                     
                 ser.write(b"O")
                 size = ''
