@@ -2,21 +2,24 @@
 #include <Servo.h>
 #include <SoftwareSerial.h>
 #include "Adafruit_Thermal.h"
-
-SoftwareSerial mySerial1(12, 13); // RX, TX
-//SoftwareSerial mySerial(7, 8); // RX, TX
 #include <avr/power.h>
+
+SoftwareSerial mySerial1(12, 13); // RX, TX รับข้อมูลจาก ESP32
+//SoftwareSerial mySerial(7, 8); // RX, TX
+
 
 Adafruit_Thermal printer(&Serial);
 
 #ifdef __AVR__
 #endif
 
+/////////////////////// เรียกใช้เวอร์โว
 Servo myservo1;
 Servo myservo2;
 Servo myservo3;
 Servo myservo4;
 
+////////////////////// กำหนดขาใช้งาน
 #define neoPIN1 3
 #define neoPIN2 5
 
@@ -25,7 +28,7 @@ Servo myservo4;
 #define servo3 10
 #define servo4 11
 
-
+/////////////////////// กำหนดค่าใช้งาน LEDRGB
 #define NUMPIXELS1 2
 Adafruit_NeoPixel pixels1(NUMPIXELS1, neoPIN1, NEO_GRB + NEO_KHZ800);
 
@@ -89,7 +92,7 @@ void loop() {
   //    AA = 'Z';
   //  }
 
-
+/////////////////////////////////////////////////////////// รับข้อมูล จาก ESP32
   if (mySerial1.available()) {
     AA = mySerial1.read();
     // Serial.print("mySerial = ");
@@ -165,97 +168,100 @@ void loop() {
       delay(1);
     }
   }
+  
   /////////////////////////////////////////////////////////////////
+  // ปริ้นใบเสร็จส่วนลด
+  ////////////////////////////////////////////////////////////////
 
   if (AA == '1') {
     //Serial.println("1 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("1"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
 
   if (AA == '2') {
     //Serial.println("2 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("2"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
 
   if (AA == '3') {
     //Serial.println("3 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("3"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
   if (AA == '4') {
     //Serial.println("4 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("4"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
 
   if (AA == '5') {
     //Serial.println("5 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("5"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
 
   if (AA == '6') {
     //Serial.println("6 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("6"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
   if (AA == '7') {
     //Serial.println("7 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("7"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
   if (AA == '8') {
     //Serial.println("8 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("8"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
-  if (AA == '8') {
+  if (AA == '9') {
     //Serial.println("9 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("9"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
   if (AA == '0') {
     //Serial.println("10 THB");
-    H_Print();
+    H_Print();                     ///////////////////////////ปริ้นส่วนหัว
     printer.justify('C');
     printer.setSize('L');
     printer.println(F("10"));
-    L_Print();
+    L_Print();                     ///////////////////////////ปริ้นส่วนท้าย
   }
 
   //Serial.println(AA);
 }
 
-void H_Print() {
+void H_Print() {           ///////////////////////////ปริ้นส่วนหัว
   printer.feed(1);
   printer.setFont('B');
   printer.println("...............................");
@@ -276,7 +282,7 @@ void H_Print() {
 
 }
 
-void L_Print() {
+void L_Print() {           ///////////////////////////ปริ้นส่วนท้าย
   printer.justify('R');
   printer.setSize('M');
   printer.println(F("THB"));
