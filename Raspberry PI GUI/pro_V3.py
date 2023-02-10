@@ -71,6 +71,7 @@ passworD = ''
 namE = ''
 mycursor = connection.cursor()
 
+####################### หน้าต่าง Register
 def registration():
     global root2
     root2 = Tk()
@@ -87,7 +88,7 @@ def registration():
     img.place(x=300, y=160)
     root2.after(10000, lambda: root2.destroy())
 
-
+####################### แลกเปลี่ยน 
 def exchange():
     mycursor = connection.cursor()
     #phone_N = '0933368624'
@@ -220,7 +221,8 @@ def exchange_P():
         global count
         root3.after(100, lambda: root3.destroy())
         count = 0
-
+#END###################### แลกเปลี่ยน 
+        
 def ww():
     mycursor = connection.cursor()
     global num
@@ -239,6 +241,7 @@ def ww():
     print(point)
     print(mycursor.rowcount, "record(s) affected")
 
+####################### login
 def Cancel_destroy():
     root.after(100, lambda: root.destroy())
 
@@ -328,7 +331,7 @@ while (status):
             SST = 1
             print("L")
 
-
+#END###################### login
 
 
 #ชื่อผู้ใช้
