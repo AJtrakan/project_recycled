@@ -15,11 +15,11 @@ from time import sleep
 # passWD=""
 # databasE="my_project"
 
-hosT="202.129.207.24"
-porT=3306
-useR="ajtaycom_Root_my_project"
-passWD="Zxc1234V"
-databasE="ajtaycom_my_project"
+hosT=""
+porT=
+useR=""
+passWD=""
+databasE=""
 
 connection = mysql.connector.connect(host=hosT,
                              port=porT,
