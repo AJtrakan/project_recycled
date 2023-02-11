@@ -308,7 +308,8 @@ def main_screen():
     Label(root, text="").pack()
     root.after(40000, lambda: root.destroy())
 
-
+#END###################### login
+    
 ser = serial.Serial ("/dev/ttyAMA0", 9600,timeout=0.1)
 
 status = True
@@ -330,9 +331,6 @@ while (status):
             size = 'L'
             SST = 1
             print("L")
-
-#END###################### login
-
 
 #ชื่อผู้ใช้
 
